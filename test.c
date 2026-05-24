@@ -15,11 +15,7 @@ void garble(uint8_t mem[],int len){
 }
 
 int main(void){
-    uint8_t s[100][2];
-    srand(time(NULL));
-    garble((void*)s,sizeof s);
-    for(int i=0; i<100;i++){
-      printf("%d %d\n",s[i][0],s[i][1]);
-    }
+    uint8_t s;
+
 
 }

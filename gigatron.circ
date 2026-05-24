@@ -57,6 +57,12 @@
     <a name="circuit" val="main"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(1020,2030)" name="Tunnel">
+      <a name="label" val="EL"/>
+    </comp>
+    <comp lib="0" loc="(1020,2060)" name="Tunnel">
+      <a name="label" val="EH"/>
+    </comp>
     <comp lib="0" loc="(1040,690)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="BUS4"/>
@@ -480,6 +486,9 @@
     </comp>
     <comp lib="0" loc="(930,780)" name="Tunnel">
       <a name="label" val="PC3"/>
+    </comp>
+    <comp lib="1" loc="(1040,2160)" name="OR Gate">
+      <a name="inputs" val="4"/>
     </comp>
     <comp lib="1" loc="(1430,1410)" name="Controlled Buffer">
       <a name="width" val="8"/>
@@ -8396,40 +8405,40 @@ fe00 fcfd 1404 e068 c218 2147 6967 6174
       <a name="dataWidth" val="16"/>
     </comp>
     <comp lib="6" loc="(490,320)" name="Button"/>
-    <comp lib="9" loc="(1337,916)" name="Text">
+    <comp lib="9" loc="(1335,915)" name="Text">
       <a name="text" val="InstructionRegister"/>
     </comp>
-    <comp lib="9" loc="(1349,1128)" name="Text">
+    <comp lib="9" loc="(1345,1125)" name="Text">
       <a name="text" val="DataRegister"/>
     </comp>
-    <comp lib="9" loc="(368,2083)" name="Text">
+    <comp lib="9" loc="(365,2080)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="MODE_DECODER"/>
     </comp>
-    <comp lib="9" loc="(384,1808)" name="Text">
+    <comp lib="9" loc="(380,1805)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="BUS_ACCESS_DECODER"/>
     </comp>
-    <comp lib="9" loc="(396,1722)" name="Text">
+    <comp lib="9" loc="(395,1720)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="命令デコーダ"/>
     </comp>
-    <comp lib="9" loc="(414,2404)" name="Text">
+    <comp lib="9" loc="(410,2400)" name="Text">
       <a name="font" val="SansSerif bold 18"/>
       <a name="text" val="INSTRUCTION_DECODER"/>
     </comp>
-    <comp lib="9" loc="(449,141)" name="Text">
+    <comp lib="9" loc="(445,140)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="クロック回路"/>
     </comp>
-    <comp lib="9" loc="(454,285)" name="Text">
+    <comp lib="9" loc="(450,285)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="リセット回路"/>
     </comp>
-    <comp lib="9" loc="(463,892)" name="Text">
+    <comp lib="9" loc="(460,890)" name="Text">
       <a name="text" val="ROM"/>
     </comp>
-    <comp lib="9" loc="(509,399)" name="Text">
+    <comp lib="9" loc="(505,395)" name="Text">
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="プログラムカウンタ"/>
     </comp>
@@ -8816,6 +8825,10 @@ fe00 fcfd 1404 e068 c218 2147 6967 6174
     <wire from="(670,930)" to="(670,970)"/>
     <wire from="(670,970)" to="(700,970)"/>
     <wire from="(680,2190)" to="(680,2220)"/>
+    <wire from="(700,2110)" to="(950,2110)"/>
+    <wire from="(700,2120)" to="(940,2120)"/>
+    <wire from="(700,2130)" to="(920,2130)"/>
+    <wire from="(700,2140)" to="(910,2140)"/>
     <wire from="(720,960)" to="(770,960)"/>
     <wire from="(840,640)" to="(1070,640)"/>
     <wire from="(840,700)" to="(840,730)"/>
@@ -8826,9 +8839,17 @@ fe00 fcfd 1404 e068 c218 2147 6967 6174
     <wire from="(890,720)" to="(900,720)"/>
     <wire from="(900,720)" to="(900,780)"/>
     <wire from="(900,780)" to="(930,780)"/>
+    <wire from="(910,2140)" to="(910,2180)"/>
+    <wire from="(910,2180)" to="(990,2180)"/>
     <wire from="(910,710)" to="(910,750)"/>
     <wire from="(910,750)" to="(930,750)"/>
+    <wire from="(920,2130)" to="(920,2170)"/>
+    <wire from="(920,2170)" to="(990,2170)"/>
     <wire from="(920,700)" to="(920,720)"/>
     <wire from="(920,720)" to="(930,720)"/>
+    <wire from="(940,2120)" to="(940,2150)"/>
+    <wire from="(940,2150)" to="(990,2150)"/>
+    <wire from="(950,2110)" to="(950,2140)"/>
+    <wire from="(950,2140)" to="(990,2140)"/>
   </circuit>
 </project>

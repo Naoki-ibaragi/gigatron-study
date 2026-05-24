@@ -42,7 +42,7 @@ CpuState cpuCycle(const CpuState S){
         switch (mod){
             #define E(p) (W?0:p)
             case 0: to=E(&T.AC); break;
-            case 1: to=E(&T.AC); lo=S.X; break;
+            case 1: to=E(&T.AC); lo=S.X; break; //lo:RAM下位8bitアドレス(命令の2byte目(Dレジスタ)またはxレジスタの値を格納、hi:RAM上位8bitアドレス 0またはYレジスタの値を格納
             case 2: to=E(&T.AC); hi=S.Y; break;
             case 3: to=E(&T.AC); lo=S.X; hi=S.Y; break;
             case 4: to=&T.X; break;
