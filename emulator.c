@@ -31,7 +31,7 @@ CpuState cpuCycle(const CpuState S){
     int mod = (S.IR >> 2) & 7; //mode decoder, condition decoderへ接続 74HCT138への入力
     int bus = S.IR&3; //bus access decoderへ接続 74HCT138への入力
 
-    int W = (ins==6); //RAM書き込み判定
+    int W = (ins==6); //RAM書き込み判定(Operation DecoderのSTOREが0出力)
     int J = (ins==7); //命令アドレスをジャンプするか
 
     uint8_t lo=S.D, hi=0, *to=NULL; //Mode選択
@@ -41,7 +41,7 @@ CpuState cpuCycle(const CpuState S){
     if(!J)
         switch (mod){
             #define E(p) (W?0:p)
-            case 0: to=E(&T.AC); break;
+            case 0: to=E(&T.AC); break; //AC:Accumlator, X:X register, Y:Y register
             case 1: to=E(&T.AC); lo=S.X; break; //lo:RAM下位8bitアドレス(命令の2byte目(Dレジスタ)またはxレジスタの値を格納、hi:RAM上位8bitアドレス 0またはYレジスタの値を格納
             case 2: to=E(&T.AC); hi=S.Y; break;
             case 3: to=E(&T.AC); lo=S.X; hi=S.Y; break;
@@ -50,28 +50,32 @@ CpuState cpuCycle(const CpuState S){
             case 6: to=E(&T.OUT); break;
             case 7: to=E(&T.OUT); lo=S.X; hi=S.Y; incX=1; break;
         }
-    uint16_t addr = (hi << 8) | lo;
 
+    uint16_t addr = (hi << 8) | lo; //RAM addr、上位8bitがhi,下位8bitがlo
+
+    //どのデータをBUSに流すかを規定
     int B = S.undef;
     switch(bus){
-        case 0: B=S.D; break;
-        case 1: if (!W) B = RAM[addr&0x7fff]; break;
-        case 2: B=S.AC; break;
-        case 3: B=IN; break;
+        case 0: B=S.D; break; //DE 即値データをバスに流す
+        case 1: if (!W) B = RAM[addr&0x7fff]; break; //OE RAMから読みだしたデータをバスに流す
+        case 2: B=S.AC; break; //AE
+        case 3: B=IN; break; //IE
     }
 
+    //書き込みフラグが立っていればバスに流れているデータをRAMに書き込む
     if(W) RAM[addr&0x7fff]=B;
 
+    //
     uint8_t ALU;
     switch(ins){
-        case 0: ALU= B; break; //LD
-        case 1: ALU=S.AC & B; break; //ANDA
+        case 0: ALU = B; break; //LD
+        case 1: ALU = S.AC & B; break; //ANDA
         case 2: ALU=S.AC | B; break; //ORA
         case 3: ALU=S.AC^B; break; //XORA
         case 4: ALU=S.AC + B; break; // ADDA
         case 5: ALU = S.AC -B; break; //SUBA
         case 6: ALU = S.AC; break; //ST
-        case 7: ALU = -S.AC; break; //Bcc/JMP
+        case 7: ALU = -S.AC; break; //JMP
     }
 
     if (to) *to=ALU; // load value into register
