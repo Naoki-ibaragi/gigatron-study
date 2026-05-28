@@ -82,8 +82,9 @@ CpuState cpuCycle(const CpuState S){
     if (incX) T.X = S.X + 1;
 
     T.PC = S.PC+1; //Next instruction
-    if(J){
-        if (mod!=0) {
+    //ジャンプ命令がある場合の次のプログラムカウンタの値を設定jj
+    if(J){ //J = (ins == 7)
+        if (mod!=0) { // mod = S.IR>>2 & 7
             int cond = (S.AC>>7) + 2*(S.AC==0);
             if (mod & (1 << cond))
                 T.PC = (S.PC &0xff00) | B;
