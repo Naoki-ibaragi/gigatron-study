@@ -14,7 +14,7 @@ def convert_gigatron_rom_to_logisim(input_file,output_file):
                 ir = binary_data[i]
                 d = binary_data[i+1]
                 # 16ビットワードとして結合 (IRが上位、Dが下位)
-                word = (ir << 8) | d
+                word = (d << 8) | ir
                 f.write(f"{word:04x} ")
             
             # 適宜改行を入れる（読みやすさのため）

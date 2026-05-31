@@ -9,12 +9,6 @@ void eight_bit_str(int a, int arr[8]) {
     }
 }
 
-void sixteen_bit_str(int a, int arr[16]) {
-    for (int i = 0; i < 16; i++) {
-        arr[i] = (a >> i) & 1;
-    }
-}
-
 typedef struct {
     uint16_t PC;
     uint8_t IR, D, AC, X, Y, OUT, undef;
@@ -31,8 +25,6 @@ typedef struct {
 
 // ROM 64kb, RAM 32kb
 uint8_t ROM[1<<16][2], RAM[1<<15], IN=0xff;
-
-FILE *debug_fp = NULL;
 
 CpuState cpuCycle(const CpuState S,long long t){
     CpuState T = S; //前のcpu状態を引き継ぐ
@@ -98,7 +90,7 @@ CpuState cpuCycle(const CpuState S,long long t){
     if (incX) T.X = S.X + 1;
 
     T.PC = S.PC+1; //Next instruction
-    //ジャンプ命令がある場合の次のプログラムカウンタの値を設定
+    //ジャンプ命令がある場合の次のプログラムカウンタの値を設定jj
     if(J){ //J = (ins == 7)
         if (mod!=0) { // mod = S.IR>>2 & 7
             int cond = (S.AC>>7) + 2*(S.AC==0);
@@ -109,67 +101,35 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
 
     //デバッグ出力
-    fprintf(debug_fp, "######CYCLE: %03d######\n",t);
-    fprintf(debug_fp, "ROM VAL:%02x%02x\n",T.D,T.IR);
-    fprintf(debug_fp, "IR: ");
+    printf("######CYCLE: %03d######\n",t);
+    printf("ROM VAL:%02x%02x\n",T.D,T.IR);
+    printf("IR: ");
     int arr_ir[8];
     eight_bit_str(T.IR, arr_ir);
     for (int i = 7; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_ir[i]);
+        printf("%d", arr_ir[i]);
     }
-    fprintf(debug_fp, "\n");
+    printf("\n");
 
-    fprintf(debug_fp, "D: ");
+    printf("D: ");
     int arr_d[8];
     eight_bit_str(T.D, arr_d);
     for (int i = 7; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_d[i]);
+        printf("%d", arr_d[i]);
     }
-    fprintf(debug_fp, "\n");
+    printf("\n");
 
-    fprintf(debug_fp, "bus num: %d\n",bus);
+    printf("bus: %d\n",bus);
 
-    fprintf(debug_fp, "BUS: ");
+    printf("BUS: ");
     int arr_b[8];
     eight_bit_str(B, arr_b);
     for (int i = 7; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_b[i]);
+        printf("%d", arr_b[i]);
     }
-    fprintf(debug_fp, "\n");
+    printf("\n");
 
-    fprintf(debug_fp, "ALU: ");
-    int arr_alu[8];
-    eight_bit_str(ALU, arr_alu);
-    for (int i = 7; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_alu[i]);
-    }
-    fprintf(debug_fp, "\n");
-
-    fprintf(debug_fp, "AC: ");
-    int arr_ac[8];
-    eight_bit_str(T.AC, arr_ac);
-    for (int i = 7; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_ac[i]);
-    }
-    fprintf(debug_fp, "\n");
-
-    fprintf(debug_fp, "RAM_ADDR: ");
-    int arr_addr[16];
-    sixteen_bit_str(addr, arr_addr);
-    for (int i = 15; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_addr[i]);
-    }
-    fprintf(debug_fp, "\n");
-
-    fprintf(debug_fp, "JMP: %d\n",J);
-
-    fprintf(debug_fp, "ROM_ADDR: ");
-    int arr_rom_addr[16];
-    sixteen_bit_str(T.PC, arr_rom_addr);
-    for (int i = 15; i >= 0; i--) {
-        fprintf(debug_fp, "%d", arr_rom_addr[i]);
-    }
-    fprintf(debug_fp, "\n\n");
+    printf("JMP: %d\n",J);
 
     return T;
 }
@@ -194,14 +154,8 @@ int main(void){
     fread(ROM, 1, sizeof ROM, fp);
     fclose(fp);
 
-    debug_fp = fopen("debug.txt", "w");
-    if (!debug_fp){
-        fprintf(stderr,"Error: failed to open debug.txt\n");
-        exit(EXIT_FAILURE);
-    }
-
     int vgaX=0, vgaY=0;
-    for (long long t=-2; t<=200 ;t++){
+    for (long long t=-2; ;t++){
         if (t<0) S.PC = 0;
 
         CpuState T = cpuCycle(S,t);
@@ -226,7 +180,6 @@ int main(void){
         }
         S=T;
     }
-    fclose(debug_fp);
     return 0;
 }
 
