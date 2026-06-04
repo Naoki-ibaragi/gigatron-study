@@ -109,67 +109,58 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
 
     //デバッグ出力
-    fprintf(debug_fp, "######CYCLE: %03d######\n",t);
-    fprintf(debug_fp, "ROM VAL:%02x%02x\n",T.D,T.IR);
-    fprintf(debug_fp, "IR: ");
+    fprintf(debug_fp, "%03d,",t);
+    fprintf(debug_fp, "%02x%02x,",T.D,T.IR);
     int arr_ir[8];
     eight_bit_str(T.IR, arr_ir);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_ir[i]);
     }
-    fprintf(debug_fp, "\n");
+    fprintf(debug_fp, ",");
 
-    fprintf(debug_fp, "D: ");
     int arr_d[8];
     eight_bit_str(T.D, arr_d);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_d[i]);
     }
-    fprintf(debug_fp, "\n");
-
-    fprintf(debug_fp, "bus num: %d\n",bus);
-
-    fprintf(debug_fp, "BUS: ");
+    fprintf(debug_fp, ",");
+    fprintf(debug_fp, "%d,",bus);
     int arr_b[8];
     eight_bit_str(B, arr_b);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_b[i]);
     }
-    fprintf(debug_fp, "\n");
+    fprintf(debug_fp, ",");
 
-    fprintf(debug_fp, "ALU: ");
     int arr_alu[8];
     eight_bit_str(ALU, arr_alu);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_alu[i]);
     }
-    fprintf(debug_fp, "\n");
+    fprintf(debug_fp, ",");
 
-    fprintf(debug_fp, "AC: ");
     int arr_ac[8];
     eight_bit_str(T.AC, arr_ac);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_ac[i]);
     }
-    fprintf(debug_fp, "\n");
+    fprintf(debug_fp, ",");
 
-    fprintf(debug_fp, "RAM_ADDR: ");
     int arr_addr[16];
     sixteen_bit_str(addr, arr_addr);
     for (int i = 15; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_addr[i]);
     }
-    fprintf(debug_fp, "\n");
+    fprintf(debug_fp, ",");
 
-    fprintf(debug_fp, "JMP: %d\n",J);
+    fprintf(debug_fp, "%d,",J);
 
-    fprintf(debug_fp, "ROM_ADDR: ");
     int arr_rom_addr[16];
     sixteen_bit_str(T.PC, arr_rom_addr);
     for (int i = 15; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_rom_addr[i]);
     }
-    fprintf(debug_fp, "\n\n");
+    fprintf(debug_fp, "\n");
 
     return T;
 }
@@ -194,11 +185,14 @@ int main(void){
     fread(ROM, 1, sizeof ROM, fp);
     fclose(fp);
 
-    debug_fp = fopen("debug.txt", "w");
+    debug_fp = fopen("debug.csv", "w");
     if (!debug_fp){
-        fprintf(stderr,"Error: failed to open debug.txt\n");
+        fprintf(stderr,"Error: failed to open debug.csv\n");
         exit(EXIT_FAILURE);
     }
+
+    //output header
+    fprintf(debug_fp, "CYCLE,ROM_VAL,IR,D,BUS_NUM,BUS,ALU,AC,RAM_ADDR,JMP,ROM_ADDR\n");
 
     int vgaX=0, vgaY=0;
     for (long long t=-2; t<=200 ;t++){
