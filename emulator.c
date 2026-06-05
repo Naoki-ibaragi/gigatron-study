@@ -195,7 +195,7 @@ int main(void){
     fprintf(debug_fp, "CYCLE,ROM_VAL,IR,D,BUS_NUM,BUS,ALU,AC,RAM_ADDR,JMP,ROM_ADDR\n");
 
     int vgaX=0, vgaY=0;
-    for (long long t=-2; t<=200 ;t++){
+    for (long long t=-2; t<=2000 ;t++){
         if (t<0) S.PC = 0;
 
         CpuState T = cpuCycle(S,t);

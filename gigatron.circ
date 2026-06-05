@@ -401,10 +401,6 @@
       <a name="facing" val="east"/>
       <a name="label" val="Y7"/>
     </comp>
-    <comp lib="0" loc="(200,250)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="button"/>
-    </comp>
     <comp lib="0" loc="(2000,1730)" name="Tunnel">
       <a name="label" val="BUS0"/>
     </comp>
@@ -664,6 +660,9 @@
     <comp lib="0" loc="(2830,4870)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="IE"/>
+    </comp>
+    <comp lib="0" loc="(2840,610)" name="Pin">
+      <a name="appearance" val="classic"/>
     </comp>
     <comp lib="0" loc="(290,2810)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -1066,6 +1065,10 @@
       <a name="facing" val="east"/>
       <a name="label" val="BUS6"/>
     </comp>
+    <comp lib="0" loc="(400,250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Button"/>
+    </comp>
     <comp lib="0" loc="(4110,2210)" name="Tunnel">
       <a name="label" val="X4"/>
     </comp>
@@ -1110,9 +1113,6 @@
     <comp lib="0" loc="(4110,520)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-    </comp>
-    <comp lib="0" loc="(420,200)" name="Clock">
-      <a name="appearance" val="NewPins"/>
     </comp>
     <comp lib="0" loc="(4250,4800)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -1209,6 +1209,9 @@
     <comp lib="0" loc="(4390,3520)" name="Pin">
       <a name="appearance" val="classic"/>
     </comp>
+    <comp lib="0" loc="(440,170)" name="Clock">
+      <a name="appearance" val="NewPins"/>
+    </comp>
     <comp lib="0" loc="(440,4520)" name="Pin">
       <a name="appearance" val="classic"/>
     </comp>
@@ -1237,7 +1240,7 @@
       <a name="incoming" val="4"/>
     </comp>
     <comp lib="0" loc="(4420,3520)" name="Tunnel">
-      <a name="label" val="button"/>
+      <a name="label" val="Button"/>
     </comp>
     <comp lib="0" loc="(4420,4030)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -2099,6 +2102,8 @@
     <comp lib="1" loc="(1650,2650)" name="NOT Gate"/>
     <comp lib="1" loc="(3420,3470)" name="AND Gate"/>
     <comp lib="1" loc="(470,400)" name="NOT Gate"/>
+    <comp lib="1" loc="(620,200)" name="NOT Gate"/>
+    <comp lib="1" loc="(670,200)" name="NOT Gate"/>
     <comp lib="1" loc="(760,3820)" name="OR Gate"/>
     <comp lib="1" loc="(840,3220)" name="AND Gate"/>
     <comp lib="1" loc="(840,3290)" name="AND Gate">
@@ -2110,7 +2115,7 @@
     <comp lib="1" loc="(840,3430)" name="AND Gate">
       <a name="inputs" val="4"/>
     </comp>
-    <comp lib="1" loc="(840,3490)" name="OR Gate"/>
+    <comp lib="1" loc="(840,3490)" name="AND Gate"/>
     <comp lib="5" loc="(1360,4260)" name="RAM">
       <a name="addrWidth" val="15"/>
       <a name="appearance" val="logisim_evolution"/>
@@ -10081,7 +10086,9 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <comp lib="7" loc="(2990,4740)" name="74244">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
-    <comp lib="7" loc="(3040,2280)" name="74377"/>
+    <comp lib="7" loc="(3040,2280)" name="74377">
+      <a name="ShowInternalStructure" val="true"/>
+    </comp>
     <comp lib="7" loc="(3050,2800)" name="74244">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
@@ -10111,7 +10118,9 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <comp lib="7" loc="(3950,580)" name="74153">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
-    <comp lib="7" loc="(3970,1450)" name="74153"/>
+    <comp lib="7" loc="(3970,1450)" name="74153">
+      <a name="ShowInternalStructure" val="true"/>
+    </comp>
     <comp lib="7" loc="(400,2360)" name="74139">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
@@ -10127,7 +10136,9 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <comp lib="7" loc="(430,4570)" name="74157">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
-    <comp lib="7" loc="(4380,1450)" name="74153"/>
+    <comp lib="7" loc="(4380,1450)" name="74153">
+      <a name="ShowInternalStructure" val="true"/>
+    </comp>
     <comp lib="7" loc="(4380,580)" name="74153">
       <a name="ShowInternalStructure" val="true"/>
     </comp>
@@ -10265,16 +10276,16 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <comp lib="9" loc="(410,1180)" name="Text">
       <a name="text" val="ROM"/>
     </comp>
-    <comp lib="9" loc="(4379,4618)" name="Text">
+    <comp lib="9" loc="(4375,4615)" name="Text">
       <a name="text" val="BUS"/>
     </comp>
     <comp lib="9" loc="(4390,3410)" name="Text">
       <a name="text" val="Debug"/>
     </comp>
-    <comp lib="9" loc="(4397,3916)" name="Text">
+    <comp lib="9" loc="(4395,3915)" name="Text">
       <a name="text" val="ROM"/>
     </comp>
-    <comp lib="9" loc="(4412,3480)" name="Text">
+    <comp lib="9" loc="(4410,3480)" name="Text">
       <a name="text" val="COUNT"/>
     </comp>
     <comp lib="9" loc="(4475,2065)" name="Text">
@@ -10289,10 +10300,10 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="クロック回路"/>
     </comp>
-    <comp lib="9" loc="(4869,3922)" name="Text">
+    <comp lib="9" loc="(4865,3920)" name="Text">
       <a name="text" val="IR"/>
     </comp>
-    <comp lib="9" loc="(4903,4624)" name="Text">
+    <comp lib="9" loc="(4900,4620)" name="Text">
       <a name="text" val="ALU"/>
     </comp>
     <comp lib="9" loc="(4985,2115)" name="Text">
@@ -10303,10 +10314,10 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
       <a name="font" val="SansSerif bold 32"/>
       <a name="text" val="プログラムカウンタ"/>
     </comp>
-    <comp lib="9" loc="(5516,3933)" name="Text">
+    <comp lib="9" loc="(5515,3930)" name="Text">
       <a name="text" val="D"/>
     </comp>
-    <comp lib="9" loc="(5606,4613)" name="Text">
+    <comp lib="9" loc="(5605,4610)" name="Text">
       <a name="text" val="AC"/>
     </comp>
     <comp lib="9" loc="(770,3265)" name="Text">
@@ -10944,7 +10955,6 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(1980,1910)" to="(2000,1910)"/>
     <wire from="(1990,550)" to="(1990,850)"/>
     <wire from="(1990,850)" to="(2030,850)"/>
-    <wire from="(200,250)" to="(460,250)"/>
     <wire from="(2000,1940)" to="(2000,2020)"/>
     <wire from="(2020,4360)" to="(2020,4380)"/>
     <wire from="(2020,4360)" to="(2180,4360)"/>
@@ -11090,6 +11100,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(2840,3910)" to="(2840,3930)"/>
     <wire from="(2840,3910)" to="(2930,3910)"/>
     <wire from="(2840,3930)" to="(3320,3930)"/>
+    <wire from="(2840,610)" to="(2860,610)"/>
     <wire from="(2850,460)" to="(2850,590)"/>
     <wire from="(2850,460)" to="(2930,460)"/>
     <wire from="(2870,4630)" to="(2870,4810)"/>
@@ -11796,6 +11807,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(3980,460)" to="(4410,460)"/>
     <wire from="(3980,630)" to="(3980,670)"/>
     <wire from="(3990,2220)" to="(3990,2450)"/>
+    <wire from="(400,250)" to="(460,250)"/>
     <wire from="(400,2590)" to="(1550,2590)"/>
     <wire from="(400,2590)" to="(400,2810)"/>
     <wire from="(400,2810)" to="(430,2810)"/>
@@ -11939,6 +11951,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(4390,4890)" to="(4390,4910)"/>
     <wire from="(4390,4950)" to="(4390,4970)"/>
     <wire from="(4390,630)" to="(4390,640)"/>
+    <wire from="(440,170)" to="(590,170)"/>
     <wire from="(440,4520)" to="(460,4520)"/>
     <wire from="(440,4600)" to="(440,4730)"/>
     <wire from="(440,4960)" to="(440,4980)"/>
@@ -12244,8 +12257,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(4790,4800)" to="(4810,4800)"/>
     <wire from="(480,1310)" to="(480,1370)"/>
     <wire from="(480,1310)" to="(650,1310)"/>
-    <wire from="(480,170)" to="(480,200)"/>
-    <wire from="(480,170)" to="(710,170)"/>
+    <wire from="(480,190)" to="(480,200)"/>
     <wire from="(480,200)" to="(510,200)"/>
     <wire from="(480,4440)" to="(480,4540)"/>
     <wire from="(480,4600)" to="(480,4620)"/>
@@ -12588,8 +12600,6 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(5690,4950)" to="(5690,4970)"/>
     <wire from="(570,1400)" to="(570,1640)"/>
     <wire from="(570,1400)" to="(650,1400)"/>
-    <wire from="(570,200)" to="(570,220)"/>
-    <wire from="(570,200)" to="(720,200)"/>
     <wire from="(570,2740)" to="(710,2740)"/>
     <wire from="(570,3080)" to="(570,3380)"/>
     <wire from="(570,3080)" to="(630,3080)"/>
@@ -12639,6 +12649,8 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(5840,4260)" to="(5930,4260)"/>
     <wire from="(5870,4700)" to="(5870,4890)"/>
     <wire from="(5870,4890)" to="(5960,4890)"/>
+    <wire from="(590,170)" to="(590,200)"/>
+    <wire from="(590,170)" to="(710,170)"/>
     <wire from="(590,3040)" to="(590,3360)"/>
     <wire from="(590,3040)" to="(720,3040)"/>
     <wire from="(590,3360)" to="(790,3360)"/>
@@ -12696,6 +12708,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(6100,4780)" to="(6110,4780)"/>
     <wire from="(620,1220)" to="(620,1260)"/>
     <wire from="(620,1260)" to="(650,1260)"/>
+    <wire from="(620,200)" to="(640,200)"/>
     <wire from="(620,2360)" to="(620,2410)"/>
     <wire from="(620,2360)" to="(730,2360)"/>
     <wire from="(630,3080)" to="(630,3470)"/>
@@ -12726,6 +12739,7 @@ fe fdfc 414 68e0 18c2 4721 6769 7461
     <wire from="(660,4370)" to="(660,4520)"/>
     <wire from="(660,4370)" to="(680,4370)"/>
     <wire from="(670,1250)" to="(720,1250)"/>
+    <wire from="(670,200)" to="(720,200)"/>
     <wire from="(670,3370)" to="(670,3450)"/>
     <wire from="(670,3370)" to="(790,3370)"/>
     <wire from="(670,3450)" to="(790,3450)"/>
