@@ -13,7 +13,7 @@ def convert_gigatron_rom_to_logisim(input_file,output_file):
             if i + 1 < len(binary_data):
                 ir = binary_data[i]
                 d = binary_data[i+1]
-                # 16ビットワードとして結合 (IRが上位、Dが下位)
+                # 16ビットワードとして結合 (Dが上位、IRが下位)
                 word = (d << 8) | ir
                 f.write(f"{word:04x} ")
             
@@ -21,7 +21,6 @@ def convert_gigatron_rom_to_logisim(input_file,output_file):
             if (i // 2 + 1) % 8 == 0:
                 f.write("\n")
 
-    
 
 if __name__ == "__main__":
    convert_gigatron_rom_to_logisim("./gigatron-rom/ROMv6.rom","./rom_logisim.txt") 

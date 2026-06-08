@@ -109,8 +109,11 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
 
     //デバッグ出力
+    //cycle
     fprintf(debug_fp, "%03d,",t);
+    //ROM VALUE 
     fprintf(debug_fp, "%02x%02x,",T.D,T.IR);
+    //IR
     int arr_ir[8];
     eight_bit_str(T.IR, arr_ir);
     for (int i = 7; i >= 0; i--) {
@@ -118,13 +121,17 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
     fprintf(debug_fp, ",");
 
+    //D
     int arr_d[8];
     eight_bit_str(T.D, arr_d);
     for (int i = 7; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_d[i]);
     }
     fprintf(debug_fp, ",");
+
+    //BUS_NUM
     fprintf(debug_fp, "%d,",bus);
+    //BUS
     int arr_b[8];
     eight_bit_str(B, arr_b);
     for (int i = 7; i >= 0; i--) {
@@ -132,6 +139,7 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
     fprintf(debug_fp, ",");
 
+    //ALU
     int arr_alu[8];
     eight_bit_str(ALU, arr_alu);
     for (int i = 7; i >= 0; i--) {
@@ -139,6 +147,7 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
     fprintf(debug_fp, ",");
 
+    //AC
     int arr_ac[8];
     eight_bit_str(T.AC, arr_ac);
     for (int i = 7; i >= 0; i--) {
@@ -146,6 +155,7 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
     fprintf(debug_fp, ",");
 
+    //RAM ADDRESS
     int arr_addr[16];
     sixteen_bit_str(addr, arr_addr);
     for (int i = 15; i >= 0; i--) {
@@ -153,13 +163,40 @@ CpuState cpuCycle(const CpuState S,long long t){
     }
     fprintf(debug_fp, ",");
 
+    //JMP
     fprintf(debug_fp, "%d,",J);
 
+    //ROM_ADDR
     int arr_rom_addr[16];
     sixteen_bit_str(T.PC, arr_rom_addr);
     for (int i = 15; i >= 0; i--) {
         fprintf(debug_fp, "%d", arr_rom_addr[i]);
     }
+    fprintf(debug_fp, ",");
+
+    //Xレジスタ
+    int arr_x[8];
+    eight_bit_str(T.X, arr_x);
+    for (int i = 7; i >= 0; i--) {
+        fprintf(debug_fp, "%d", arr_x[i]);
+    }
+    fprintf(debug_fp, ",");
+
+    //Yレジスタ
+    int arr_y[8];
+    eight_bit_str(T.Y, arr_y);
+    for (int i = 7; i >= 0; i--) {
+        fprintf(debug_fp, "%d", arr_y[i]);
+    }
+    fprintf(debug_fp, ",");
+
+    //OUTレジスタ
+    int arr_out[8];
+    eight_bit_str(T.OUT, arr_out);
+    for (int i = 7; i >= 0; i--) {
+        fprintf(debug_fp, "%d", arr_out[i]);
+    }
+
     fprintf(debug_fp, "\n");
 
     return T;
@@ -192,10 +229,10 @@ int main(void){
     }
 
     //output header
-    fprintf(debug_fp, "CYCLE,ROM_VAL,IR,D,BUS_NUM,BUS,ALU,AC,RAM_ADDR,JMP,ROM_ADDR\n");
+    fprintf(debug_fp, "CYCLE,ROM_VAL,IR,D,BUS_NUM,BUS,ALU,AC,RAM_ADDR,JMP,ROM_ADDR_16,X,Y,OUT\n");
 
     int vgaX=0, vgaY=0;
-    for (long long t=-2; t<=2000 ;t++){
+    for (long long t=-2; t<=500000 ;t++){
         if (t<0) S.PC = 0;
 
         CpuState T = cpuCycle(S,t);
